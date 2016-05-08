@@ -13,6 +13,14 @@
     <![endif]-->
   </head>
   <body>
+    <?php
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    if (!isset($_SESSION['user_loggedin'])) {
+        $_SESSION['user_loggedin'] = false;
+    }
+    ?>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -20,12 +28,18 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="<?php echo base_url(); ?>">Home</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?php echo site_url('User/signup'); ?>">Sign up</a></li>
-            <li><a href="#">Login</a></li>
-            <li class="active"><a href="#">Logout</a></li>
+            <?php
+            if ($_SESSION['user_loggedin']) {
+                echo '<li style="padding:15px;">Hi, '.$_SESSION['user_fname'].'!</li>';
+                echo '<li class="active"><a href="'.site_url('User/logout').'">Logout</a></li>';
+            } else {
+                echo '<li><a href="'.site_url('User/signup').'">Sign up</a></li>';
+                echo '<li class="active"><a href="'.site_url('User/login').'">Login</a></li>';
+            }
+            ?>
           </ul>
         </div>
       </div>
