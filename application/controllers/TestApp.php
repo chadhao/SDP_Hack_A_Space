@@ -1,5 +1,7 @@
 <?php
 
+defined('BASEPATH') or exit('No direct script access allowed');
+
 class TestApp extends CI_Controller
 {
     public function __construct()
@@ -14,11 +16,8 @@ class TestApp extends CI_Controller
         $user['lname'] = 'Hao';
         $user['email'] = 'chadhao@gmail.com';
         $user['password'] = md5('haoduan0812');
-        $view_data['header_title'] = 'App Test';
         $view_data['input'] = $user;
         $view_data['result'] = $this->UserModel->addUser($user);
-        $this->load->view('templates/header', $view_data);
-        $this->load->view('testmsg', $view_data);
-        $this->load->view('templates/footer');
+        $this->utils->view('testmsg', 'App Test', $view_data);
     }
 }
