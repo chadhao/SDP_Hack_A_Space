@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class TestApp extends CI_Controller
+class Test extends CI_Controller
 {
     public function __construct()
     {
@@ -10,14 +10,10 @@ class TestApp extends CI_Controller
         $this->load->model('UserModel');
     }
 
-    public function test()
+    public function index()
     {
-        $user['fname'] = 'Chad';
-        $user['lname'] = 'Hao';
-        $user['email'] = 'chadhao@gmail.com';
-        $user['password'] = md5('haoduan0812');
-        $view_data['input'] = $user;
-        $view_data['result'] = $this->UserModel->addUser($user);
+        $view_data['input'] = $this->UserModel->getUser(6);
+        $view_data['result'] = (array) $this->UserModel->getUser(6);
         $this->utils->view('testmsg', 'App Test', $view_data);
     }
 }
