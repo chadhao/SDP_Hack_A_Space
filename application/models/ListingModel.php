@@ -1,4 +1,5 @@
 <?php
-class ListingModel extends CI_Model {
-    
+
+class ListingModel extends CI_Model
+{
 }
