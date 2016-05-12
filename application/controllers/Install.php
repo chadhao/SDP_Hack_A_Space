@@ -8,7 +8,7 @@ class Install extends CI_Controller
     {
         $view_data['heading'] = 'Install Database';
         if ($this->db->table_exists('users')) {
-            $view_data['message'] = 'Table already exists!';
+            $view_data['message'] = '<p>Table already exists!</p>';
         } else {
             $this->load->dbforge();
             $fields = array(
@@ -34,13 +34,16 @@ class Install extends CI_Controller
             'type' => 'VARCHAR',
             'constraint' => 32,
         ),
+        'is_admin' => array(
+            'type' => 'BOOLEAN',
+        ),
         );
             $this->dbforge->add_field($fields);
             $this->dbforge->add_key('id', true);
             if ($this->dbforge->create_table('users')) {
-                $view_data['message'] = 'Tables created!';
+                $view_data['message'] = '<p>Tables created!</p>';
             } else {
-                $view_data['message'] = 'Failed to create tables!';
+                $view_data['message'] = '<p>Failed to create tables!</p>';
             }
         }
         $this->utils->view('errors/html/error_general', 'Install Database', $view_data);

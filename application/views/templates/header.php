@@ -33,7 +33,10 @@
           <ul class="nav navbar-nav navbar-right">
             <?php
             if ($_SESSION['user_loggedin']) {
-                echo '<li style="padding:15px;">Hi, '.$_SESSION['user_fname'].'!</li>';
+                echo '<li style="padding:15px;">Hi, '.$_SESSION['user']->fname.'!</li>';
+                if ($_SESSION['user']->is_admin) {
+                    echo '<li><a href="'.site_url('Admin').'">Admin</a></li>';
+                }
                 echo '<li class="active"><a href="'.site_url('User/logout').'">Logout</a></li>';
             } else {
                 echo '<li><a href="'.site_url('User/signup').'">Sign up</a></li>';

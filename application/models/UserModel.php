@@ -6,7 +6,7 @@ class UserModel extends CI_Model
 
     public function getAllUser()
     {
-        return $this->db->get('user');
+        return $this->db->get('users')->result();
     }
 
     /**
@@ -16,23 +16,43 @@ class UserModel extends CI_Model
      */
     public function addUser($user)
     {
-        if ($this->emailExist($user['email'])) {
+        if ($this->userExist($user['email'])) {
             return 1;
         }
 
         return $this->db->insert(self::$table_name, $user);
     }
 
-    private function emailExist($email)
+    public function deleteUser($id)
     {
-        return $this->db->get_where(self::$table_name, array('email' => $email))->conn_id->affected_rows;
+        if ($this->userExist($id)) {
+            return $this->db->delete(self::$table_name, array('id' => intval($id)));
+        }
+
+        return false;
     }
-    
-    public function verifyUser($user) {
-	return $this->db->get_where(self::$table_name, array('email' => $user['email'], 'password' => $user['password']))->conn_id->affected_rows>0?TRUE:FALSE;
+
+    public function userExist($user)
+    {
+        $condition = is_numeric($user) ? array('id' => intval($user)) : array('email' => $user);
+
+        return $this->db->get_where(self::$table_name, $condition)->conn_id->affected_rows;
     }
-    
-    public function getUserByEmail($email) {
-	return $this->db->get_where(self::$table_name, array('email' => $email))->result();
+
+    public function verifyUser($user)
+    {
+        return $this->db->get_where(self::$table_name, array('email' => $user['email'], 'password' => $user['password']))->conn_id->affected_rows > 0 ? true : false;
+    }
+
+    public function getUser($user)
+    {
+        $condition = is_numeric($user) ? array('id' => intval($user)) : array('email' => $user);
+
+        return $this->db->get_where(self::$table_name, $condition)->result()[0];
+    }
+
+    public function updateUser($id, $user)
+    {
+        return $this->db->update(self::$table_name, $user, array('id' => $id));
     }
 }
