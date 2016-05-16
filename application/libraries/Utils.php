@@ -21,4 +21,20 @@ class Utils
         $this->ci->load->view($file);
         $this->ci->load->view('templates/footer');
     }
+
+    /**
+     * function used to check if input string matches input pattern.
+     *
+     * @param $str is the string to compare,
+     *        $regex is the pattern to match,
+     *        $return_on_success(optional) is the return value on success,
+     *        $return_on_fail(optional) is the return value on failure.
+     *
+     * @return $return_on_success on string matches pattern,
+     *         $return_on_failure on string does not match pattern.
+     */
+    public function check($str, $regex, $return_on_success = true, $return_on_failure = false)
+    {
+        return preg_match($regex, $str) ? $return_on_success : $return_on_failure;
+    }
 }
