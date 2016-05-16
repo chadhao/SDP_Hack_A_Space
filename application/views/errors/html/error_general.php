@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 <style type="text/css">
 
@@ -29,4 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="container" id="this_container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>
+	</div>
+	<div class="container">
+		<p><br><a onclick="history.back();">Go Back</a></p>
 	</div>

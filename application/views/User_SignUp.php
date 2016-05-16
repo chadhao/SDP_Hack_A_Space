@@ -9,6 +9,8 @@
     <input type="email" id="inputEmail" name="inputEmail" class="form-control input-lg" placeholder="Email address" required>
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" name="inputPassword" class="form-control input-lg" placeholder="Password" required>
+    <label for="inputConfirmPassword" class="sr-only">Password</label>
+    <input type="password" id="inputConfirmPassword" name="inputConfirmPassword" class="form-control input-lg" placeholder="Confirm Password" required>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
   </form>
 </div>
