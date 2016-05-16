@@ -37,4 +37,16 @@ class Utils
     {
         return preg_match($regex, $str) ? $return_on_success : $return_on_failure;
     }
+
+    public function uriMatch($class_str, $method_str = '')
+    {
+        $uri_str = explode('/', substr($_SERVER['REQUEST_URI'], 1));
+        if (count($uri_str) == 1 && empty($method_str)) {
+            return strcasecmp($uri_str[0], $class_str) == 0 ? true : false;
+        } elseif (count($uri_str) > 1) {
+            return strcasecmp($uri_str[0], $class_str) == 0 && strpos($uri_str[1], $method_str) !== false ? true : false;
+        } else {
+            return false;
+        }
+    }
 }
