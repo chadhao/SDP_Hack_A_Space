@@ -2,6 +2,11 @@
   <?php $this->view('templates/admin_sidebar'); ?>
   <div class="col-sm-9">
     <h1>User List</h1>
+    <?php
+    if (!$users) {
+        echo '<p>No user found!</p>';
+    } else {
+        ?>
     <div class="table-responsive">
       <table class="table table-striped table-hover">
         <tr>
@@ -24,5 +29,7 @@
         ?>
       </table>
     </div>
+    <?php 
+    } ?>
   </div>
 </div>
