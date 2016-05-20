@@ -118,4 +118,68 @@ class Admin extends CI_Controller
         $data['cats'] = empty($result) ? false : $result;
         $this->utils->view('Admin_CategoryList', 'Category List', $data);
     }
+
+    public function categoryEdit($cid)
+    {
+        $this->is_admin();
+        if ($this->CategoryModel->categoryExist($cid)) {
+            $data['caction'] = 'edit';
+            $data['cid'] = $cid;
+            $data['cname'] = $this->CategoryModel->getCategoryName($cid);
+            $this->utils->view('Admin_CategoryForm', 'Edit Category', $data);
+        } else {
+            header('Location: '.site_url('Admin/category'));
+            exit();
+        }
+    }
+
+    public function categoryAdd()
+    {
+        $this->is_admin();
+        $data['caction'] = 'add';
+        $this->utils->view('Admin_CategoryForm', 'Add Category', $data);
+    }
+
+    public function categoryProcess($caction)
+    {
+        $this->is_admin();
+        if ($caction == 'add') {
+            if ($this->CategoryModel->categoryExist($_POST['inputCName'])) {
+                $data['heading'] = 'Oops! An error occurred...';
+                $data['message'] = '<p>The category name already exists.</p>';
+                $this->utils->view('errors/html/error_general', 'Hack A Space', $data);
+            } else {
+                if ($this->CategoryModel->addCategory($_POST['inputCName'])) {
+                    header('Location: '.site_url('Admin/category'));
+                    exit();
+                } else {
+                    $data['heading'] = 'Oops! An error occurred...';
+                    $data['message'] = '<p>There is an error occurred while adding category.</p>';
+                    $this->utils->view('errors/html/error_general', 'Hack A Space', $data);
+                }
+            }
+        } else {
+            if ($this->CategoryModel->updateCategory($caction, $_POST['inputCName'])) {
+                header('Location: '.site_url('Admin/category'));
+                exit();
+            } else {
+                $data['heading'] = 'Oops! An error occurred...';
+                $data['message'] = '<p>There is an error occurred while updating category.</p>';
+                $this->utils->view('errors/html/error_general', 'Hack A Space', $data);
+            }
+        }
+    }
+
+    public function categoryDelete($cid)
+    {
+        $this->is_admin();
+        if ($this->CategoryModel->deleteCategory($cid)) {
+            header('Location: '.site_url('Admin/category'));
+            exit();
+        } else {
+            $data['heading'] = 'Oops! An error occurred...';
+            $data['message'] = '<p>There is an error occurred while deleting category.</p>';
+            $this->utils->view('errors/html/error_general', 'Hack A Space', $data);
+        }
+    }
 }
