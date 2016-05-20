@@ -8,6 +8,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('UserModel');
+        $this->load->model('CategoryModel');
     }
 
     private function is_admin()
@@ -44,7 +45,8 @@ class Admin extends CI_Controller
     public function user()
     {
         $this->is_admin();
-        $data['users'] = $this->UserModel->getAllUser();
+        $result = $this->UserModel->getAllUser();
+        $data['users'] = empty($result) ? false : $result;
         $this->utils->view('Admin_UserList', 'User List', $data);
     }
 
@@ -107,5 +109,13 @@ class Admin extends CI_Controller
             $data['message'] = '<p>There is an error occurred while updating user.</p>';
             $this->utils->view('errors/html/error_general', 'Hack A Space', $data);
         }
+    }
+
+    public function category()
+    {
+        $this->is_admin();
+        $result = $this->CategoryModel->getAllCategory();
+        $data['cats'] = empty($result) ? false : $result;
+        $this->utils->view('Admin_CategoryList', 'Category List', $data);
     }
 }
