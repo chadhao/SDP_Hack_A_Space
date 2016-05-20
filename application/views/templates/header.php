@@ -20,6 +20,7 @@
     if (!isset($_SESSION['user_loggedin'])) {
         $_SESSION['user_loggedin'] = false;
     }
+    $CI = &get_instance();
     ?>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -28,7 +29,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="<?php echo base_url(); ?>">Home</a></li>
+            <li<?php echo $CI->utils->uriMatch('Home') ? ' class="active"' : ''; ?>><a href="<?php echo base_url(); ?>">Home</a></li>
+            <li<?php echo $CI->utils->uriMatch('Category') ? ' class="active"' : ''; ?>><a href="<?php echo site_url('Category'); ?>">All Categories</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <?php
