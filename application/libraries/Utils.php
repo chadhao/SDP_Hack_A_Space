@@ -31,7 +31,7 @@ class Utils
      *        $return_on_fail(optional) is the return value on failure.
      *
      * @return $return_on_success on string matches pattern,
-     *         $return_on_failure on string does not match pattern.
+     *                            $return_on_failure on string does not match pattern.
      */
     public function check($str, $regex, $return_on_success = true, $return_on_failure = false)
     {
@@ -40,6 +40,12 @@ class Utils
 
     public function uriMatch($class_str, $method_str = '')
     {
+        if ($class_str == 'Home') {
+            $url_now = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            if ($url_now == base_url()) {
+                return true;
+            }
+        }
         $uri_str = explode('/', substr($_SERVER['REQUEST_URI'], 1));
         if (count($uri_str) == 1 && empty($method_str)) {
             return strcasecmp($uri_str[0], $class_str) == 0 ? true : false;
