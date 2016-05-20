@@ -2,7 +2,7 @@
   <?php $this->view('templates/admin_sidebar'); ?>
   <div class="col-sm-9">
     <h1>Category List</h1>
-    <p><a href="<?php echo site_url('Admin/userAdd'); ?>">Add Category</a></p>
+    <p><a href="<?php echo site_url('Admin/categoryAdd'); ?>">Add Category</a></p>
     <?php
     if (!$cats) {
         echo '<p>No Category found!</p>';
@@ -19,14 +19,15 @@
         foreach ($cats as $cat) {
             echo '<tr>';
             echo '<td style="text-align:center;">'.$cat->id.'</td>';
-            echo '<td>'.$one_user->cname.'</td>';
+            echo '<td>'.$cat->cname.'</td>';
             echo '<td style="text-align:center;"><a href="'.site_url('Admin/categoryEdit').'/'.$cat->id.'">Edit</a> | <a href="'.site_url('Admin/categoryDelete').'/'.$cat->id.'">Delete</a></td>';
             echo '</tr>';
         }
         ?>
       </table>
     </div>
-    <?php 
+    <?php
+
     } ?>
   </div>
 </div>
