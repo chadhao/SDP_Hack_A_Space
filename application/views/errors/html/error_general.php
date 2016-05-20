@@ -31,5 +31,5 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<?php echo $message; ?>
 	</div>
 	<div class="container">
-		<p><br><a onclick="history.back();">Go Back</a></p>
+		<p><br><a href="#" onclick="history.back();">Go Back</a></p>
 	</div>
