@@ -6,14 +6,15 @@ class UserModel extends CI_Model
 
     public function getAllUser()
     {
-        return $this->db->get('users')->result();
+        return $this->db->get(self::$table_name)->result();
     }
 
     /**
      * function used to add new user.
      *
      * @param $user is an associative array which represents a user to be added to database
-     * @return FALSE on SQL execution failure
+     *
+     * @return false on SQL execution failure
      *         1 on email exists
      */
     public function addUser($user)
@@ -55,6 +56,10 @@ class UserModel extends CI_Model
 
     public function updateUser($id, $user)
     {
-        return $this->db->update(self::$table_name, $user, array('id' => $id));
+        if ($this->userExist($id)) {
+            return $this->db->update(self::$table_name, $user, array('id' => $id));
+        }
+
+        return false;
     }
 }
