@@ -13,7 +13,7 @@ class CategoryModel extends CI_Model
     {
         $condition = array('id' => intval($cid));
 
-        return $this->db->get_where(self::$table_name, $condition)->result()[0];
+        return $this->db->get_where(self::$table_name, $condition)->result()[0]->cname;
     }
 
     public function addCategory($cname)
@@ -37,7 +37,7 @@ class CategoryModel extends CI_Model
     public function updateCategory($cid, $cname)
     {
         if ($this->categoryExist($cid)) {
-            return $this->db->update(self::$table_name, array('cname' => $cname), array('id' => $cid));
+            return $this->db->update(self::$table_name, array('cname' => $cname), array('id' => intval($cid)));
         }
 
         return false;
