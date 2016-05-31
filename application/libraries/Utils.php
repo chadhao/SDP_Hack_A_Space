@@ -55,4 +55,14 @@ class Utils
             return false;
         }
     }
+    
+    public function is_loggedin() {
+	if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (!$_SESSION['user']->user_loggedin) {
+            header('Location: '.site_url('error'));
+            exit();
+        }
+    }
 }
