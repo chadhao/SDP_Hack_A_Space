@@ -53,3 +53,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'Home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
+$route['(?i)error'] = 'home/error';
+$route['(?i)upload'] = 'listing/uploadImage';
+$route['(?i)category/(:any)'] = 'listing/getListingByCategory/$1';
+$route['(?i)listing/(:num)'] = 'listing/getListingById/$1';
+$route['(?i)listing/(?i)cat/(:any)'] = 'listing/getListingByCategory/$1';
