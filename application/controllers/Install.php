@@ -127,6 +127,10 @@ class Install extends CI_Controller
                     'constraint' => 11,
                     'unsigned' => true,
                 ),
+                'update_time' => array(
+                    'type' => 'DATETIME',
+                    'default' => '1000-01-01 00:00:00',
+                ),
             );
             $this->dbforge->add_field($fields);
             $this->dbforge->add_key('id', true);

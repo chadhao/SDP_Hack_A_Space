@@ -71,8 +71,8 @@ class User extends CI_Controller
             } else {
                 $_SESSION = array();
             }
-            $_SESSION['user_loggedin'] = true;
             $_SESSION['user'] = $this->UserModel->getUser($user['email']);
+            $_SESSION['user_loggedin'] = true;
             if ($_SESSION['user']->is_admin) {
                 header('Location: '.site_url('Admin'));
                 exit();

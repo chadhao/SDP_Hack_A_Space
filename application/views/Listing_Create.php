@@ -2,7 +2,7 @@
 <script src="<?php echo site_url('bootstrap/js/dropzone.min.js'); ?>"></script>
 <div class="container" style="margin-top:50px; max-width:800px;">
   <h2>Create Listing</h2>
-  <form class="form-horizontal" method="POST" action="">
+  <form class="form-horizontal" method="POST" action="<?php echo site_url('listing/createProcess'); ?>">
     <div class="form-group">
       <label for="inputTitle" class="col-sm-2 control-label">Title</label>
       <div class="col-sm-10">
@@ -36,6 +36,17 @@
     <div class="form-group">
       <label class="col-sm-2 control-label">Image</label>
       <div class="col-sm-10"><div class="dropzone" id="image-upload"></div></div>
+    </div>
+    <div class="form-group">
+      <label for="inputDescription" class="col-sm-2 control-label">Description</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" rows="5" name="inputDescription" id="inputDescription" placeholder="Description"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Submit</button>
+      </div>
     </div>
   </form>
 </div>

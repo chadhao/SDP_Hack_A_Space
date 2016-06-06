@@ -11,5 +11,39 @@ class ListingModel extends CI_Model
 
     public function getListing($lid)
     {
+        $result = $this->db->get_where(self::$table_name, array('id' => intval($lid)), 1);
+        if ($result === false || $result->num_rows() == 0) {
+            return false;
+        }
+
+        return $result->result()[0];
+    }
+
+    public function addListing($listing)
+    {
+        return $this->db->insert(self::$table_name, $listing);
+    }
+
+    public function validateInput($listing)
+    {
+        $isValid = true;
+        if (empty($listing['title'])) {
+            $str = 'Title is empty!<br>';
+            $isValid = $isValid === true ? $str : ($isValid.$str);
+        }
+        if (empty($listing['location'])) {
+            $str = 'Location is empty!<br>';
+            $isValid = $isValid === true ? $str : ($isValid.$str);
+        }
+        if (empty($listing['availability'])) {
+            $str = 'Availability is empty!<br>';
+            $isValid = $isValid === true ? $str : ($isValid.$str);
+        }
+        if (empty($listing['description'])) {
+            $str = 'Description is empty!<br>';
+            $isValid = $isValid === true ? $str : ($isValid.$str);
+        }
+
+        return $isValid;
     }
 }

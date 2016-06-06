@@ -22,12 +22,10 @@ class Home extends CI_Controller
         if (!isset($_SESSION)) {
             session_start();
         }
-        if (isset($_SESSION['user_loggedin']) && $_SESSION['user_loggedin']) {
-            header('Location: '.base_url());
-            exit();
+        if (!isset($_SESSION['user_loggedin']) || !$_SESSION['user_loggedin']) {
+            $data['heading'] = 'Warning!';
+            $data['message'] = '<p>You need to <a href="'.site_url('user/login').'">login</a> to access this page!</p>';
+            $this->utils->view('errors/html/error_general', 'Hack A Space', $data);
         }
-        $data['heading'] = 'Warning!';
-        $data['message'] = '<p>You need to <a href="'.site_url('user/login').'">login</a> to access this page!</p>';
-        $this->utils->view('errors/html/error_general', 'Hack A Space', $data);
     }
 }
