@@ -31,6 +31,11 @@
           <ul class="nav navbar-nav">
             <li<?php echo $CI->utils->uriMatch('Home') ? ' class="active"' : ''; ?>><a href="<?php echo base_url(); ?>">Home</a></li>
             <li<?php echo $CI->utils->uriMatch('Category') ? ' class="active"' : ''; ?>><a href="<?php echo site_url('Category'); ?>">All Categories</a></li>
+            <?php
+            if ($_SESSION['user_loggedin']) {
+                echo '<li'.($CI->utils->uriMatch('listing', 'create') ? ' class="active"' : '').'><a href="'.site_url('listing/create').'">Create Listing</a></li>';
+            }
+            ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <?php

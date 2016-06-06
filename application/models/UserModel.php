@@ -15,7 +15,7 @@ class UserModel extends CI_Model
      * @param $user is an associative array which represents a user to be added to database
      *
      * @return false on SQL execution failure
-     *         1 on email exists
+     *               1 on email exists
      */
     public function addUser($user)
     {
@@ -50,8 +50,14 @@ class UserModel extends CI_Model
     public function getUser($user)
     {
         $condition = is_numeric($user) ? array('id' => intval($user)) : array('email' => $user);
+        $result = $this->db->get_where(self::$table_name, $condition, 1);
+        if ($result === false || $result->num_rows() == 0) {
+            return false;
+        }
+        $result_obj = $result->result()[0];
+        unset($result_obj->password);
 
-        return $this->db->get_where(self::$table_name, $condition)->result()[0];
+        return $result_obj;
     }
 
     public function updateUser($id, $user)
