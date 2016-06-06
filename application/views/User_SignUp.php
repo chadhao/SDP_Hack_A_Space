@@ -1,4 +1,4 @@
-<div class="container" style="margin-top:50px; max-width:400px;">
+<div class="container c-mw-400">
   <form class="form-signin" method="post" action="<?php echo site_url('User/signupProcess'); ?>">
     <h2 class="form-signin-heading">Please sign up</h2>
     <label for="inputFirstname" class="sr-only">Firstname</label>

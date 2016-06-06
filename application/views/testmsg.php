@@ -54,7 +54,7 @@ p.footer {
   margin: 20px 0 0 0;
 }
 </style>
-<div id="container" style="margin-top:50px;">
+<div id="container">
 <h1>App Test</h1>
 
 <div id="body">

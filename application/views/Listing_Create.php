@@ -1,6 +1,6 @@
 <link href="<?php echo site_url('bootstrap/css/dropzone.css'); ?>" type="text/css" rel="stylesheet" />
 <script src="<?php echo site_url('bootstrap/js/dropzone.min.js'); ?>"></script>
-<div class="container" style="margin-top:50px; max-width:800px;">
+<div class="container c-mw-800">
   <h2>Create Listing</h2>
   <form class="form-horizontal" method="POST" action="<?php echo site_url('listing/createProcess'); ?>">
     <div class="form-group">

@@ -1,8 +1,8 @@
-<div class="container" style="margin-top:50px; max-width:1000px;">
+<div class="container c-mw-1000">
   <h3 style="text-align:center"><?php echo $listing->title; ?><br><small><?php echo date_create($listing->update_time, timezone_open('Pacific/Auckland'))->format('d/m/Y'); ?></small></h3>
   <?php
   if (!empty($listing->image)) {
-      echo '<p style="max-width:767px; margin-left:auto; margin-right:auto;"><img class="img-responsive img-rounded" src="'.site_url('uploads/'.$listing->image).'"></p>';
+      echo '<p class="c-mw-600 c-c"><img class="img-responsive img-rounded" src="'.site_url('uploads/'.$listing->image).'"></p>';
   }
   ?>
   <dl class="dl-horizontal">
