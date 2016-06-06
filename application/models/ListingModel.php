@@ -9,9 +9,12 @@ class ListingModel extends CI_Model
         return $this->db->get(self::$table_name)->result();
     }
 
-    public function getListing($lid)
+    public function getListing($condition, $fields = '')
     {
-        $result = $this->db->get_where(self::$table_name, array('id' => intval($lid)), 1);
+        if (!empty($fields)) {
+            $this->db->select($fields);
+        }
+        $result = $this->db->get_where(self::$table_name, $condition, 1);
         if ($result === false || $result->num_rows() == 0) {
             return false;
         }
