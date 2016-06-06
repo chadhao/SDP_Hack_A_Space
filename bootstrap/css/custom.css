@@ -1,0 +1,175 @@
+.c-mw-400 {
+  max-width: 400px;
+}
+.c-mw-600 {
+  max-width: 600px;
+}
+.c-mw-800 {
+  max-width: 800px;
+}
+.c-mw-1000 {
+  max-width: 1000px;
+}
+.c-c {
+  margin-left: auto;
+  margin-right: auto;
+}
+.c-pud-10 {
+  padding: 10px 0;
+}
+.c-pud-20 {
+  padding: 20px 0;
+}
+.c-bu {
+  border-top: 1px solid #FFF;
+}
+.c-ta-l {
+  text-align: left;
+}
+.c-ta-r {
+  text-align: right;
+}
+.c-ta-c {
+  text-align: center;
+}
+.c-bg {
+  background: #171f26 url(/bg.jpg) no-repeat bottom;
+  background-size: cover;
+}
+.c-navheader {
+  background: none;
+  border: none;
+}
+.c-navheader .c-navheader-brand:focus,
+.c-navheader .c-navheader-brand:hover {
+  color: #FFF;
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+.c-navheader .navbar-toggle {
+  color: #FFF;
+  border-color: #FFF;
+}
+.c-navheader .navbar-toggle .icon-bar {
+  color: #FFF;
+  background-color: #FFF;
+}
+.c-navheader .navbar-nav > li > a {
+  color: #FFF;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.c-navheader .navbar-nav > li > a:focus,
+.c-navheader .navbar-nav > li > a:hover {
+  color: #FFF;
+  background-color: transparent;
+}
+.c-navheader .navbar-nav > .active > a,
+.c-navheader .navbar-nav > .active > a:focus,
+.c-navheader .navbar-nav > .active > a:hover {
+  color: #FFF;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #FFF;
+}
+.c-navheader-tc {
+  color: #FFF;
+}
+.c-navheader-bc {
+  border-color: #FFF;
+}
+.c-navheader-brand {
+  color: #FFF;
+  float: left;
+  height: 50px;
+  padding: 10px 10px;
+  font-size: 24px;
+  line-height: 20px;
+}
+.c-inner {
+  margin: 0 auto;
+}
+.c-inner > h2 {
+  padding-top: 50px;
+  font-size: 50px;
+  font-weight: 300;
+  color: #FFF;
+  text-shadow: 2px 2px 0px #000;
+}
+.c-inner > p {
+  font-size: 14px;
+  color: #FFF;
+  line-height: 2;
+  text-shadow: 1px 1px 0px #000;
+}
+.c-inner > p > a,
+.c-inner > p > a:focus,
+.c-inner > p > a:hover {
+  color: #FFF;
+  font-size: 14px;
+  line-height: 3;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #FFF;
+  padding: 10px 10px;
+}
+.c-search-container {
+  margin-top: -35px;
+}
+.c-search {
+  margin: 0 auto;
+  background-color: #555;
+  padding: 5px 10px;
+  display:block;
+  overflow:auto;
+}
+.c-search > div > p {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  border-radius: 4px;
+  border: 1px solid #FFF;
+}
+.c-search > div > p > a,
+.c-search > div > p > a:focus,
+.c-search > div > p > a:hover {
+  color: #FFF;
+  font-size: 16px;
+  background-color: transparent;
+  text-decoration: none;
+}
+.c-search > form {
+  margin: 0;
+  padding: 0;
+}
+.c-search > form > div > input {
+  padding: 0 20px;
+  color: #FFF;
+  font-size: 16px;
+  border: 1px solid #FFF;
+  border-radius: 4px;
+  background-color: transparent;
+  height: 42px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.c-search .c-plr-5 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.c-search > form > div > button {
+  border-radius: 4px;
+  border: none;
+  color: #555;
+  background-color: #FFF;
+  height: 40px;
+  padding: 0 15px;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}

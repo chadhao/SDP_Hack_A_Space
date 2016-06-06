@@ -14,7 +14,10 @@ class Home extends CI_Controller
         if (!isset($_SESSION)) {
             session_start();
         }
-        $this->utils->view('Home');
+        $header_data['header_title'] = 'Hack A Space';
+        $this->load->view('templates/header_home', $header_data);
+        $this->load->view('Home');
+        $this->load->view('templates/footer');
     }
 
     public function error()

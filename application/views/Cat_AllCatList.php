@@ -1,4 +1,4 @@
-<div class="container" style="margin-top:60px;">
+<div class="container">
   <?php
   if (empty($cats)) {
       echo '<h1>No category found!</h1>';

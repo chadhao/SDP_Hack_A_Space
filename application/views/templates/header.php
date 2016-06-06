@@ -7,6 +7,7 @@
     <title><?php echo $header_title; ?></title>
 
     <link href="<?php echo site_url('bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo site_url('bootstrap/css/custom.css'); ?>" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -22,7 +23,7 @@
     }
     $CI = &get_instance();
     ?>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <header class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
@@ -59,4 +60,4 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </header>

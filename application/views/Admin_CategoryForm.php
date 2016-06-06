@@ -1,4 +1,4 @@
-<div class="container" style="margin-top:50px;">
+<div class="container">
   <?php $this->view('templates/admin_sidebar'); ?>
   <div class="col-sm-9">
     <h1><?php echo $caction == 'add' ? 'Add Category' : 'Edit Category'; ?></h1>
