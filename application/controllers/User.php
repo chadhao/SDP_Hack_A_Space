@@ -36,7 +36,7 @@ class User extends CI_Controller
                     $_SESSION = array();
                 }
                 $_SESSION['user_loggedin'] = true;
-                $_SESSION['user'] = $this->UserModel->getUser($user['email']);
+                $_SESSION['user'] = $this->UserModel->getUser($user['email'], 'id, fname, lname, email, is_admin');
                 header('Location: '.base_url());
                 exit();
             } else {
@@ -71,7 +71,7 @@ class User extends CI_Controller
             } else {
                 $_SESSION = array();
             }
-            $_SESSION['user'] = $this->UserModel->getUser($user['email']);
+            $_SESSION['user'] = $this->UserModel->getUser($user['email'], 'id, fname, lname, email, is_admin');
             $_SESSION['user_loggedin'] = true;
             if ($_SESSION['user']->is_admin) {
                 header('Location: '.site_url('Admin'));

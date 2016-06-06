@@ -47,17 +47,18 @@ class UserModel extends CI_Model
         return $this->db->get_where(self::$table_name, array('email' => $user['email'], 'password' => $user['password']))->conn_id->affected_rows > 0 ? true : false;
     }
 
-    public function getUser($user)
+    public function getUser($user, $fields = '')
     {
         $condition = is_numeric($user) ? array('id' => intval($user)) : array('email' => $user);
+        if (!empty($fields)) {
+            $this->db->select($fields);
+        }
         $result = $this->db->get_where(self::$table_name, $condition, 1);
         if ($result === false || $result->num_rows() == 0) {
             return false;
         }
-        $result_obj = $result->result()[0];
-        unset($result_obj->password);
 
-        return $result_obj;
+        return $result->result()[0];
     }
 
     public function updateUser($id, $user)

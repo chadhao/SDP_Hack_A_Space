@@ -21,10 +21,11 @@ class Listing extends CI_Controller
 
     public function getListingById($lid)
     {
-        $listing = $this->ListingModel->getListing(intval($lid));
+        $listing = $this->ListingModel->getListing(array('id' => intval($lid)));
         if ($listing) {
-            $user = $this->UserModel->getUser($listing->uploader);
-            $view_data['uploader'] = $user->fname.' '.$user->lname;
+            $user = $this->UserModel->getUser($listing->uploader, 'fname, lname');
+            $view_data['fullname'] = $user->fname.' '.$user->lname;
+            $view_data['catname'] = $this->CategoryModel->getCategoryName($listing->category);
             $view_data['listing'] = $listing;
             $this->utils->view('Listing_Profile', $listing->title, $view_data);
         } else {
@@ -62,8 +63,9 @@ class Listing extends CI_Controller
         $vlisting = $this->ListingModel->validateInput($listing_data);
         if ($vlisting === true) {
             if ($this->ListingModel->addListing($listing_data)) {
+                $lid = $this->ListingModel->getListing(array('title' => $listing_data['title'], 'update_time' => $listing_data['update_time']), 'id')->id;
                 unset($_SESSION['uploaded_image']);
-                header('Location: '.base_url());
+                header('Location: '.site_url('listing/'.$lid));
                 exit();
             } else {
                 $view_data['heading'] = 'Oops! An error occurred...';

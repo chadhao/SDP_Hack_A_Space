@@ -67,7 +67,7 @@ class Admin extends CI_Controller
     {
         $this->is_admin();
         if ($this->UserModel->userExist($id)) {
-            $data['user'] = $this->UserModel->getUser($id);
+            $data['user'] = $this->UserModel->getUser($id, 'id, fname, lname, email, is_admin');
             $this->utils->view('Admin_EditUser', 'Edit User', $data);
         } else {
             header('Location: '.site_url('Admin/user'));
