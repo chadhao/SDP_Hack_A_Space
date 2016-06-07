@@ -21,7 +21,8 @@
   padding: 20px 0;
 }
 .c-bu {
-  border-top: 1px solid #FFF;
+  margin-top: 20px;
+  border-top: 1px solid #CCC;
 }
 .c-ta-l {
   text-align: left;
@@ -113,6 +114,7 @@
   border-radius: 4px;
   border: 1px solid #FFF;
   padding: 10px 10px;
+  text-decoration: none;
 }
 .c-search-container {
   margin-top: -35px;
@@ -172,4 +174,52 @@
   margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
+}
+.c-latest-container {
+  margin-top: 25px;
+}
+.c-latest-container .c-mw-1000 {
+  margin-left: auto;
+  margin-right: auto;
+}
+.c-latest-single {
+  height: 300px;
+}
+.c-latest-single > p {
+  background: rgba(0, 0, 0, 0.3);
+  color: #FFF;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+.c-latest-single > p > a,
+.c-latest-single > p > a:focus,
+.c-latest-single > p > a:hover {
+  color: #FFF;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: transparent;
+  text-decoration: none;
+}
+.c-latest-single > div {
+  height: 250px;
+}
+.c-lo {
+  margin-top: 50px;
+  text-align: center;
+}
+.c-lo a,
+.c-lo a:focus,
+.c-lo a:hover {
+  color: #333;
+  padding: 10px;
+  margin: 0 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-size: 16px;
+  text-decoration: none;
+}
+.c-cl-date {
+  color: #555;
+  float: right;
 }
