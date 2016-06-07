@@ -125,7 +125,7 @@ class Admin extends CI_Controller
         if ($this->CategoryModel->categoryExist($cid)) {
             $data['caction'] = 'edit';
             $data['cid'] = $cid;
-            $data['cname'] = $this->CategoryModel->getCategoryName($cid);
+            $data['cname'] = $this->CategoryModel->getCategory($cid)->cname;
             $this->utils->view('Admin_CategoryForm', 'Edit Category', $data);
         } else {
             header('Location: '.site_url('Admin/category'));

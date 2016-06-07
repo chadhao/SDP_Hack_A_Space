@@ -9,8 +9,17 @@
     </form>
   </div>
 </div>
-<div class="container">
-  <h1>This is a temporary homepage!</h1>
-  <p><a href="<?php echo site_url('install'); ?>">Install database</a></p>
-  <p><a href="<?php echo site_url('UTest'); ?>">Unit test</a></p>
+<div class="container c-latest-container">
+  <div class="c-mw-1000">
+    <?php
+    foreach ($listings as $single) {
+        $title_str = $single->title;
+        echo '<div class="col-sm-6" style="padding: 10px;">';
+        echo '<div class="c-latest-single" style="background: #171f26 url(/uploads/'.$single->image.') no-repeat center; background-size: 768px auto;">';
+        echo '<div class="container-fluid" onclick="window.location = \''.site_url('listing/'.$single->id).'\'"></div><p><a href="'.site_url('listing/'.$single->id).'">'
+            .(strlen($title_str) > 45 ? (substr($title_str, 0, 45).'...') : $title_str).'</a></p>';
+        echo '</div></div>';
+    }
+    ?>
+  </div>
 </div>

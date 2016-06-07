@@ -7,16 +7,22 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('ListingModel');
     }
 
     public function index()
     {
+        if (!$this->utils->installed()) {
+            header('Location: '.site_url('install'));
+            exit();
+        }
         if (!isset($_SESSION)) {
             session_start();
         }
         $header_data['header_title'] = 'Hack A Space';
+        $body_data['listings'] = $this->ListingModel->getLatestListing();
         $this->load->view('templates/header_home', $header_data);
-        $this->load->view('Home');
+        $this->load->view('Home', $body_data);
         $this->load->view('templates/footer');
     }
 

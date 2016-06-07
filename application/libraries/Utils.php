@@ -50,19 +50,33 @@ class Utils
         if (count($uri_str) == 1 && empty($method_str)) {
             return strcasecmp($uri_str[0], $class_str) == 0 ? true : false;
         } elseif (count($uri_str) > 1) {
+            if (empty($method_str)) {
+                return false;
+            }
+
             return strcasecmp($uri_str[0], $class_str) == 0 && strpos($uri_str[1], $method_str) !== false ? true : false;
         } else {
             return false;
         }
     }
-    
-    public function is_loggedin() {
-	if (!isset($_SESSION)) {
+
+    public function is_loggedin()
+    {
+        if (!isset($_SESSION)) {
             session_start();
         }
         if (!$_SESSION['user_loggedin']) {
             header('Location: '.site_url('error'));
             exit();
         }
+    }
+
+    public function installed()
+    {
+        if (!$this->ci->db->table_exists('users') || !$this->ci->db->table_exists('categories') || !$this->ci->db->table_exists('listings')) {
+            return false;
+        }
+
+        return true;
     }
 }

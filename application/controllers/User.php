@@ -12,6 +12,13 @@ class User extends CI_Controller
 
     public function signup()
     {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if ($_SESSION['user_loggedin']) {
+            header('Location: '.base_url());
+            exit();
+        }
         $this->utils->view('User_SignUp', 'Sign Up');
     }
 

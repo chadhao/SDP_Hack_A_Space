@@ -25,7 +25,7 @@ class Listing extends CI_Controller
         if ($listing) {
             $user = $this->UserModel->getUser($listing->uploader, 'fname, lname');
             $view_data['fullname'] = $user->fname.' '.$user->lname;
-            $view_data['catname'] = $this->CategoryModel->getCategoryName($listing->category);
+            $view_data['catname'] = $this->CategoryModel->getCategory($listing->category)->cname;
             $view_data['listing'] = $listing;
             $this->utils->view('Listing_Profile', $listing->title, $view_data);
         } else {
@@ -35,12 +35,27 @@ class Listing extends CI_Controller
         }
     }
 
-    public function getListingByCategory($cid)
+    public function getListingByCategory($cat)
     {
+        if (!$this->CategoryModel->categoryExist($cat)) {
+            header('Location: '.base_url());
+            exit();
+        }
+        $category = $this->CategoryModel->getCategory($cat);
+        $view_data['listings'] = $this->ListingModel->getListings(array('category' => $category->id), 'id, title, update_time');
+        $view_data['cname'] = $category->cname;
+        $this->utils->view('Cat_OneCat', '$category->cname', $view_data);
     }
 
     public function create()
     {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (!$_SESSION['user_loggedin']) {
+            header('Location: '.site_url('User/login'));
+            exit();
+        }
         $this->utils->is_loggedin();
         $view_data['cats'] = $this->CategoryModel->getAllCategory();
         $this->utils->view('Listing_Create', 'Create Listing', $view_data);
@@ -75,6 +90,84 @@ class Listing extends CI_Controller
         } else {
             $view_data['heading'] = 'Oops! An error occurred...';
             $view_data['message'] = '<p>'.$vlisting.'</p>';
+            $this->utils->view('errors/html/error_general', 'Hack A Space', $view_data);
+        }
+    }
+
+    public function edit($lid)
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (!$this->ListingModel->listingExist($lid) || !$_SESSION['user_loggedin']) {
+            header('Location: '.base_url());
+            exit();
+        }
+        $listing = $this->ListingModel->getListing(array('id' => $lid));
+        if ($_SESSION['user']->id == $listing->uploader || $_SESSION['user']->is_admin) {
+            $view_data['cats'] = $this->CategoryModel->getAllCategory();
+            $view_data['listing'] = $listing;
+            $this->utils->view('Listing_Edit', 'Edit Listing', $view_data);
+        } else {
+            header('Location: '.site_url('User/login'));
+            exit();
+        }
+    }
+
+    public function editProcess($lid)
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (!$this->ListingModel->listingExist($lid) || !$_SESSION['user_loggedin']) {
+            header('Location: '.base_url());
+            exit();
+        }
+        $listing = $this->ListingModel->getListing(array('id' => $lid));
+        if ($_SESSION['user']->id == $listing->uploader || $_SESSION['user']->is_admin) {
+            $listing_data['title'] = $_POST['inputTitle'];
+            $listing_data['location'] = $_POST['inputLocation'];
+            $listing_data['availability'] = $_POST['inputAvailability'];
+            if (isset($_SESSION['uploaded_image'])) {
+                $listing_data['image'] = $_SESSION['uploaded_image'];
+            }
+            $listing_data['description'] = $_POST['inputDescription'];
+            $listing_data['category'] = empty($_POST['inputCategory']) ? 0 : intval($_POST['inputCategory']);
+            $listing_data['update_time'] = date('Y-m-d H:i:s');
+            $vlisting = $this->ListingModel->validateInput($listing_data);
+            if ($vlisting === true) {
+                if ($this->ListingModel->updateListing($lid, $listing_data)) {
+                    unset($_SESSION['uploaded_image']);
+                    header('Location: '.site_url('listing/'.$lid));
+                    exit();
+                } else {
+                    $view_data['heading'] = 'Oops! An error occurred...';
+                    $view_data['message'] = '<p>Failed updating listing!</p>';
+                    $this->utils->view('errors/html/error_general', 'Hack A Space', $view_data);
+                }
+            } else {
+                $view_data['heading'] = 'Oops! An error occurred...';
+                $view_data['message'] = '<p>'.$vlisting.'</p>';
+                $this->utils->view('errors/html/error_general', 'Hack A Space', $view_data);
+            }
+        }
+    }
+
+    public function delete($lid)
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (!$this->ListingModel->listingExist($lid) || !$_SESSION['user_loggedin'] || !$_SESSION['user']->is_admin) {
+            header('Location: '.base_url());
+            exit();
+        }
+        if ($this->ListingModel->deleteListing($lid)) {
+            header('Location: '.base_url());
+            exit();
+        } else {
+            $view_data['heading'] = 'Oops! An error occurred...';
+            $view_data['message'] = '<p>Failed deleting listing!</p>';
             $this->utils->view('errors/html/error_general', 'Hack A Space', $view_data);
         }
     }
