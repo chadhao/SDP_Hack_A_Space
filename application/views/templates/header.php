@@ -37,10 +37,10 @@
         <div class="navbar-collapse collapse"  id="navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li<?php echo $CI->utils->uriMatch('Home') ? ' class="active"' : ''; ?>><a href="<?php echo base_url(); ?>">Home</a></li>
-            <li<?php echo $CI->utils->uriMatch('Category') ? ' class="active"' : ''; ?>><a href="<?php echo site_url('Category'); ?>">All Categories</a></li>
+            <li<?php echo $CI->utils->uriMatch('Category') ? ' class="active"' : ''; ?>><a href="<?php echo site_url('Category'); ?>">Find spaces</a></li>
             <?php
             if ($_SESSION['user_loggedin']) {
-                echo '<li'.($CI->utils->uriMatch('listing', 'create') ? ' class="active"' : '').'><a href="'.site_url('listing/create').'">Create Listing</a></li>';
+                echo '<li'.($CI->utils->uriMatch('listing', 'create') ? ' class="active"' : '').'><a href="'.site_url('listing/create').'">List a space</a></li>';
             }
             ?>
           </ul>

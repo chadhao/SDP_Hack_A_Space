@@ -6,10 +6,20 @@ class UTest extends CI_Controller
     {
         parent::__construct();
         $this->load->model('UserModel');
+        $this->load->model('CategoryModel');
+        $this->load->model('ListingModel');
         $this->load->library('unit_test');
     }
 
     public function index()
+    {
+        echo '<h2>Unit Test</h2>';
+        $this->s1();
+        $this->s2();
+        echo $this->unit->report();
+    }
+
+    private function s1()
     {
         $this->unit->run($this->UserModel->userExist('haoduan@outlook.com'),
         true,
@@ -35,7 +45,18 @@ class UTest extends CI_Controller
         true,
         'verifyUser() - Testing with existent user and right password',
         'Expected result: TRUE');
+    }
 
-        echo $this->unit->report();
+    private function s2()
+    {
+        $this->unit->run($this->CategoryModel->categoryExist('Garden'),
+        true,
+        'categoryExist() - Testing with existent category',
+        'Expected result: TRUE');
+
+        $this->unit->run($this->ListingModel->listingExist('1'),
+        true,
+        'listingExist() - Testing with existent listing',
+        'Expected result: TRUE');
     }
 }

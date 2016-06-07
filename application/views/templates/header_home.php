@@ -37,8 +37,8 @@
           </div>
           <div class="navbar-collapse collapse"  id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="">Find spaces</a></li>
-              <li><a href="">List a space</a></li>
+              <li><a href="<?php echo site_url('Category'); ?>">Find spaces</a></li>
+              <li><a href="<?php echo site_url('listing/create'); ?>">List a space</a></li>
               <?php
               if ($_SESSION['user_loggedin']) {
                   if ($_SESSION['user']->is_admin) {
