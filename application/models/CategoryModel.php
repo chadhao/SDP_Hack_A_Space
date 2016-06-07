@@ -9,11 +9,11 @@ class CategoryModel extends CI_Model
         return $this->db->get(self::$table_name)->result();
     }
 
-    public function getCategoryName($cid)
+    public function getCategory($cat)
     {
-        $condition = array('id' => intval($cid));
+        $condition = is_numeric($cat) ? array('id' => intval($cat)) : array('cname' => $cat);
 
-        return $this->db->get_where(self::$table_name, $condition)->result()[0]->cname;
+        return $this->db->get_where(self::$table_name, $condition)->result()[0];
     }
 
     public function addCategory($cname)
